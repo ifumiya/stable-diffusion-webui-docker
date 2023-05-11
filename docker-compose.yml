@@ -97,6 +97,7 @@ services:
     volumes:
       - ./arrange/lora:/data/
       - models:/data/pretrain/
+      - sd-script-cache:/root/.cache/
     command: 'yahade'
     deploy:
       resources:
@@ -109,3 +110,4 @@ services:
 volumes:
   models:
   packages:
+  sd-script-cache:
