@@ -9,6 +9,7 @@ WORKDIR /sd-scripts
 RUN pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
 RUN pip install --upgrade -r requirements.txt
 RUN pip install -U -I xformers
+RUN pip install --upgrade bitsandbytes==0.38.1
 
 RUN apt-get update && apt-get install -y libgl1-mesa-dev && apt-get clean
 
