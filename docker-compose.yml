@@ -91,6 +91,21 @@ services:
       - *v1
       - models:/checkpoints
 
+  sd-scripts:
+    image: sd-scripts
+    build: ./arrange/sd-scripts/
+    volumes:
+      - ./arrange/lora:/data/
+      - models:/data/pretrain/
+    command: 'yahade'
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [gpu]
+
 volumes:
   models:
   packages:
