@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dataset_config=/data/dataset.toml
-output_name=$(date "+%Y%m%d-%H%M%S")_$1
+output_name=$1_$(date "+%Y%m%d-%H%M%S")
 
 # https://github.com/kohya-ss/sd-scripts/blob/main/docs/train_network_README-ja.md#%E5%AD%A6%E7%BF%92%E3%81%AE%E5%AE%9F%E8%A1%8C
 
