@@ -35,6 +35,10 @@ services:
       - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
     volumes:
       - packages:/usr/local/lib/python3.10/site-packages
+      - *v1
+      - *v2
+      - *vf1
+      - ./arrange/lora:/data/Lora/homemade/
 
   auto-cpu:
     <<: *automatic
@@ -86,7 +90,7 @@ services:
 
   copy-checkpoint:
     image: busybox
-    command: cp -R /data/StableDiffusion/ /checkpoints
+    command: cp -R /data/StableDiffusion_/ /checkpoints
     volumes:
       - *v1
       - models:/checkpoints
@@ -98,7 +102,7 @@ services:
       - ./arrange/lora:/data/
       - models:/data/pretrain/
       - sd-script-cache:/root/.cache/
-    command: 'yahade'
+    command: no_name
     deploy:
       resources:
         reservations:
