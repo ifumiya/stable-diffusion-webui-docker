@@ -38,7 +38,7 @@ services:
       - *v1
       - *v2
       - *vf1
-      - ./arrange/lora:/data/Lora/homemade/
+      - ./arrange/lora/output:/data/Lora/homemade/
 
   auto-cpu:
     <<: *automatic
