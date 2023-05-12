@@ -5,6 +5,8 @@ output_name=$(date "+%Y%m%d-%H%M%S")_$1
 
 # https://github.com/kohya-ss/sd-scripts/blob/main/docs/train_network_README-ja.md#%E5%AD%A6%E7%BF%92%E3%81%AE%E5%AE%9F%E8%A1%8C
 
+export LD_LIBRARY_PATH=/usr/local/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/
+
 accelerate launch \
   --num_cpu_threads_per_process 1 \
   train_network.py \
