@@ -23,5 +23,5 @@ accelerate launch \
   --mixed_precision="fp16" \
   --cache_latents \
   --gradient_checkpointing \
-  --save_every_n_epochs=1 \
+  --save_every_n_epochs=0 \
   --network_module=networks.lora
