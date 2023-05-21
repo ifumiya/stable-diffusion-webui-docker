@@ -33,6 +33,12 @@ services:
     image: sd-auto:51
     environment:
       - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+    volumes:
+      - packages:/usr/local/lib/python3.10/site-packages
+      - *v1
+      - *v2
+      - *vf1
+      - ./arrange/lora/output:/data/Lora/homemade/
 
   auto-cpu:
     <<: *automatic
@@ -84,10 +90,28 @@ services:
 
   copy-checkpoint:
     image: busybox
-    command: cp -R /data/StableDiffusion/ /checkpoints
+    command: cp -R /data/StableDiffusion_/ /checkpoints
     volumes:
       - *v1
       - models:/checkpoints
 
+  sd-scripts:
+    image: sd-scripts
+    build: ./arrange/sd-scripts/
+    volumes:
+      - ./arrange/lora:/data/
+      - models:/data/pretrain/
+      - sd-script-cache:/root/.cache/
+    command: no_name
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [gpu]
+
 volumes:
   models:
+  packages:
+  sd-script-cache:
