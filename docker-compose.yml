@@ -6,6 +6,7 @@ x-base_service: &base_service
     volumes:
       - &v1 ./data:/data
       - &v2 ./output:/output
+      - &vf1 models:/data/StableDiffusion
     stop_signal: SIGINT
     deploy:
       resources:
@@ -23,6 +24,7 @@ services:
     profiles: ["download"]
     volumes:
       - *v1
+      - *vf1
 
   auto: &automatic
     <<: *base_service
@@ -86,3 +88,13 @@ services:
     deploy: {}
     environment:
       - CLI_ARGS=--cpu
+
+  copy-checkpoint:
+    image: busybox
+    command: cp -R /data/StableDiffusion/ /checkpoints
+    volumes:
+      - *v1
+      - models:/checkpoints
+
+volumes:
+  models:
